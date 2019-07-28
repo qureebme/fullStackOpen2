@@ -25,6 +25,28 @@ app.delete('/api/persons/:id', function(req, res){
     res.json(persons)
 })
 
+app.post('/api/persons', function(req, res){
+    let body = req.body;
+    if (!body.hasOwnProperty('name') || !body.hasOwnProperty('number')) {
+        console.log('ERROR: name or number is missing from entry')
+        return res.status(400).end('ERROR: name or number is missing from entry')
+    }
+    else if(persons.find((each) => each.name == body.name.toLowerCase())){
+        console.log('ERROR: This name already exists');
+        return res.status(400).end('ERROR: This name already exists');
+    }
+    const newEntry = {
+        ...body,
+        "id": parseInt(Math.random() * 123456789654)
+    }
+    persons.push(newEntry)
+    res.json(persons)
+})
+
+app.use(function(err, req, res, next){
+    res.status(500).send('Internal server error')
+})
+
 const port = 3001;
 app.listen(port, function(){
     console.log(`server is running on port ${port}`);
