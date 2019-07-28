@@ -13,6 +13,12 @@ app.get('/info', function(req, res){
             <p>${new Date()}</p>`
     )
 })
+
+app.get('/api/persons/:id', function(req, res){
+    const person = persons.find((each) => each.id == req.params.id);
+    if (person) res.json(person)
+    else res.status(404).send('Person not found')
+})
 const port = 3001;
 app.listen(port, function(){
     console.log(`server is running on port ${port}`);
