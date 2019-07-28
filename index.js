@@ -19,12 +19,18 @@ app.get('/api/persons/:id', function(req, res){
     if (person) res.json(person)
     else res.status(404).send('Person not found')
 })
+
+app.delete('/api/persons/:id', function(req, res){
+    persons = persons.filter((each) => each.id != req.params.id)
+    res.json(persons)
+})
+
 const port = 3001;
 app.listen(port, function(){
     console.log(`server is running on port ${port}`);
 })
 
-const persons = [
+let persons = [
     {
       "name": "Arto Hellas",
       "number": "040-123456",
