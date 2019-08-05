@@ -31,7 +31,7 @@ app.post('/api/persons', function(req, res){
         console.log('ERROR: name or number is missing from entry')
         return res.status(400).end('ERROR: name or number is missing from entry')
     }
-    else if(persons.find((each) => each.name == body.name.toLowerCase())){
+    else if(persons.find((each) => each.name.toLowerCase() == body.name.toLowerCase())){
         console.log('ERROR: This name already exists');
         return res.status(400).end('ERROR: This name already exists');
     }
