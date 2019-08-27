@@ -33,7 +33,6 @@ app.delete('/api/persons/:id', function(req, res){
 })
 
 app.post('/api/persons', function(req, res){
-  //console.log(req)
     let body = req.body;
     if (!body.hasOwnProperty('name') || !body.hasOwnProperty('number')) {
         console.log('ERROR: name or number is missing from entry')
