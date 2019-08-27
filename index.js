@@ -52,8 +52,8 @@ app.use(function(err, req, res, next){
     res.status(500).send('Internal server error')
 })
 
-//const port = process.env.PORT || 3001;
-app.listen(process.env.PORT || 3001, function(){
+const port = process.env.PORT || 3001;
+app.listen(port, function(){
     console.log(`server is running on port ${port}`);
 })
 
