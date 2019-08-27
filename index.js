@@ -7,6 +7,10 @@ app.use(bodyParser.json())
 app.use(morgan('tiny'))
 app.use(cors());
 
+app.get('/', function(req, res){
+  res.json(persons);
+})
+
 app.get('/api/persons', function(req, res){
     res.json(persons);
 })
@@ -46,10 +50,6 @@ app.post('/api/persons', function(req, res){
     }
     persons.push(newEntry)
     res.json(persons)
-})
-
-app.use(function(err, req, res, next){
-    res.status(500).send('Internal server error')
 })
 
 const port = process.env.PORT || 3001;
