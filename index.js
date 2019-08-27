@@ -1,7 +1,11 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const cors = require('cors');
 
 app.use(bodyParser.json())
+app.use(morgan('tiny'))
+app.use(cors());
 
 app.get('/api/persons', function(req, res){
     res.json(persons);
@@ -26,6 +30,7 @@ app.delete('/api/persons/:id', function(req, res){
 })
 
 app.post('/api/persons', function(req, res){
+  //console.log(req)
     let body = req.body;
     if (!body.hasOwnProperty('name') || !body.hasOwnProperty('number')) {
         console.log('ERROR: name or number is missing from entry')
@@ -47,8 +52,8 @@ app.use(function(err, req, res, next){
     res.status(500).send('Internal server error')
 })
 
-const port = 3001;
-app.listen(port, function(){
+//const port = process.env.PORT || 3001;
+app.listen(process.env.PORT || 3001, function(){
     console.log(`server is running on port ${port}`);
 })
 
