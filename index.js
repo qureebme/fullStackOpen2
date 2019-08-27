@@ -1,4 +1,5 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -6,10 +7,7 @@ const cors = require('cors');
 app.use(bodyParser.json())
 app.use(morgan('tiny'))
 app.use(cors());
-
-app.get('/', function(req, res){
-  res.json(persons);
-})
+app.use(express.static('build'))
 
 
 app.get('/api/persons', function(req, res){
