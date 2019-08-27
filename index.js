@@ -1,10 +1,10 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+//const morgan = require('morgan');
 const cors = require('cors');
 
 app.use(bodyParser.json())
-app.use(morgan('tiny'))
+//app.use(morgan('tiny'))
 app.use(cors());
 
 app.get('/api/persons', function(req, res){
