@@ -34,11 +34,11 @@ app.get('/info', function(req, res){
 })
 
 app.get('/api/persons/:id', function(req, res){
-  Person.find({})
+  Person.findById(req.params.id)
   .then((data) => {
-    let result = data.find((each) => each.id == req.params.id)
+    //let result = data.find((each) => each.id == req.params.id)
 
-    if (result) res.send(result)
+    if (data) res.send(data)
     else res.status(404).send("Person not found")
   })
   .catch((err) => {console.log('Something went wrong:', err)})
