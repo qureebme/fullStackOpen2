@@ -8,7 +8,6 @@ mongoose.connect(url, { useNewUrlParser: true })
     .then(whatever => console.log('connected to MongoDB'))
     .catch(err => console.log('error connecting to MongoDB:', err.message))
 
-
 // the schema: declaration of document field types
 const personSchema = new mongoose.Schema({
     name: String,
@@ -25,26 +24,4 @@ personSchema.set('toJSON', {
 
 const Person = mongoose.model('Person', personSchema)
 
-/*
-db.on('open', ()=>{
-    console.log('connected');
-    setTimeout(() => {
-        mongoose.connection.close()
-        .then(()=>{
-            console.log('closed')
-        process.exit(1)
-    })
-    }, 2000);
-})*/
-/*
-  .then(result => {
-    console.log('connected to MongoDB')
-    setTimeout(() => {
-
-    },1000)
-  })
-  .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
-  })*/
-
-  module.exports = Person;
+module.exports = Person;

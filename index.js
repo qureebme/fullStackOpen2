@@ -1,6 +1,5 @@
 const dotenv = require('dotenv').config();
 const Person = require('./models/person');
-const ObjectID = require('mongodb').ObjectID;
 
 const express = require('express');
 const app = express();
@@ -50,21 +49,13 @@ app.delete('/api/persons/:id', function(req, res){
 })
 
 app.post('/api/persons', function(req, res){
-    let body = req.body;
-    if (!body.hasOwnProperty('name') || !body.hasOwnProperty('number')) {
-        console.log('ERROR: name or number is missing from entry')
-        return res.status(400).end('ERROR: name or number is missing from entry')
-    }
-    else if(persons.find((each) => each.name.toLowerCase() == body.name.toLowerCase())){
-        console.log('ERROR: This name already exists');
-        return res.status(400).end('ERROR: This name already exists');
-    }
-    const newEntry = {
-        ...body,
-        "id": parseInt(Math.random() * 123456789654)
-    }
-    persons.push(newEntry)
-    res.json(persons)
+    let newPerson = new Person(req.body);
+    newPerson.save()
+    .then((data) => res.json(data))
+    .catch((err)=> {
+      console.log('Cannot save data:', err)
+      res.status(500).send('Server Error')
+    })
 })
 
 const port = process.env.PORT || PORT;
