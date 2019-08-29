@@ -42,7 +42,6 @@ app.get('/info', function(req, res, next){
 app.get('/api/persons/:id', function(req, res, next){
   Person.findById(req.params.id)
   .then((data) => {
-    //let result = data.find((each) => each.id == req.params.id)
 
     if (data) res.send(data)
     else res.status(404).send("Person not found")
@@ -64,7 +63,6 @@ app.put('/api/persons/:id', function(req, res, next){
 app.delete('/api/persons/:id', function(req, res, next){
     Person.findOneAndDelete({_id: ObjectID(req.params.id)}, (err, result) => {
       if (err)  {
-        //res.send('Something went wrong');
         console.log('Something went wrong:', err)
         next(err)
     }
