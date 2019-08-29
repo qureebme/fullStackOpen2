@@ -13,8 +13,8 @@ mongoose.connect(url, { useNewUrlParser: true })
 
 // the schema: declaration of document field types
 const personSchema = new mongoose.Schema({
-    name: {type: String, required: true, /*unique: true*/},
-    number: {type: String, required: true, /*unique: true*/},
+    name: {type: String, required: true, minlength: 3 /*unique: true*/},
+    number: {type: String, required: true, minlength: 8 /*unique: true*/},
 })
 
 personSchema.plugin(uniqueValidator);

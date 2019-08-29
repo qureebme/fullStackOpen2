@@ -72,14 +72,14 @@ app.delete('/api/persons/:id', function(req, res, next){
 
 app.post('/api/persons', function(req, res){
 
-    let newPerson = new Person(req.body);
-    newPerson.save()
-    .then((data) => res.json(data))
-    .catch((err)=> {
+  let newPerson = new Person(req.body);
+  newPerson.save()
+  .then((data) => res.json(data))
+  .catch((err)=> {
 
-      console.log('Cannot save data:', err)
-      res.status(400).send('Bad request')
-    })
+    console.log('Cannot save data:', err)
+    res.status(400).send('Bad request')
+  })
 })
 
 const unknownRouteHandler = function(req, res, next){
