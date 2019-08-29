@@ -78,9 +78,10 @@ app.post('/api/persons', function(req, res){
     .catch((err)=> {
 
       console.log('Cannot save data:', err)
-      res.status(500).send('Server Error')
+      res.status(400).send('Bad request')
     })
 })
+
 const unknownRouteHandler = function(req, res, next){
   res.end('Unknown Route')
 }
